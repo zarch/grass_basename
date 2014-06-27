@@ -13,7 +13,7 @@
  * 
  * \return number of decimals
  */
-size_t G_get_numb_of_decimals(const char *str)
+size_t G_get_num_decimals(const char *str)
 {
     int sep = '.';
     size_t len;
@@ -34,7 +34,8 @@ size_t G_get_numb_of_decimals(const char *str)
  *
  * \return a formatted string
  */
-char *G_double_to_str(double number, size_t ndigits, size_t ndecimals)
+char *G_double_to_basename_format(double number, 
+                                  size_t ndigits, size_t ndecimals)
 {
     double integer, decimal;
     integer = floor(number);
@@ -63,8 +64,8 @@ char *G_double_to_str(double number, size_t ndigits, size_t ndecimals)
 /*!
  * \brief Return the environmental basename variable or the default value
  */
-char *G_get_basename_sep(){
-    char *envvar = "GRASS_BASENAME_SEP";
+char *G_get_basename_separator(){
+    char *envvar = "GRASS_BASENAME_SEPARATOR";
     char *envsep;
 
     envsep = getenv(envvar);
@@ -86,7 +87,7 @@ char *G_join_basename_strings(const char**strings, size_t len)
     char *result;
     char *separator;
 
-    separator = G_get_basename_sep();
+    separator = G_get_basename_separator();
 
     lensep = strlen(separator);
     length = lensep * (len - 1) + 1;
@@ -123,8 +124,8 @@ char *G_generate_basename(const char *basename, double number,
 {
     char *separator, *numberstr, *result;
 
-    separator = G_get_basename_sep();
-    numberstr = G_double_to_str(number, ndigits, ndecimals);
+    separator = G_get_basename_separator();
+    numberstr = G_double_to_basename_format(number, ndigits, ndecimals);
 
     result = malloc(strlen(basename) + strlen(separator) + strlen(numberstr) + 1);
 

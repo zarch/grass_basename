@@ -24,19 +24,20 @@ int main(){
     char *result;
 
     printf(SEP);
-    printf("\n\nTest G_get_numb_of_decimals\n");
+    printf("\n\nTest G_get_num_decimals\n");
     for (i = 0; i < len_decimals_strings; i++){
         printf("Number of decimals in %s => %zu\n", 
                decimals_strings[i], 
-               G_get_numb_of_decimals(decimals_strings[i]));
+               G_get_num_decimals(decimals_strings[i]));
     }
 
     printf(SEP);
-    printf("\n\nTest G_double_to_str\n");
+    printf("\n\nTest G_double_to_basename_format\n");
     for (i = 0; i < len_ndigits; i++){
         for (j = 0; j < len_ndecimals; j++){
             for (n = 0; n < len_numbers; n++){
-                result = G_double_to_str(numbers[n], ndigits[i], ndecimals[j]);
+                result = G_double_to_basename_format(numbers[n], ndigits[i],
+                                                     ndecimals[j]);
                 printf("number: %10f, ndigits: %zu, ndecimals: %zu result => %s\n",
                        numbers[n], ndigits[i], ndecimals[j], result);
                 free(result);
@@ -46,8 +47,8 @@ int main(){
     }
 
     printf(SEP);
-    printf("\n\nTest G_get_basename_sep\n");
-    printf("The basename separator is: %s\n", G_get_basename_sep());
+    printf("\n\nTest G_get_basename_separator\n");
+    printf("The basename separator is: %s\n", G_get_basename_separator());
 
     printf(SEP);
     printf("\n\nG_join_basename_strings\n");
